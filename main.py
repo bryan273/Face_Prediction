@@ -6,20 +6,23 @@ import time
 import random
 
 # Crop Face
-cascade_face_detector = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
-model_1 = keras.models.load_model('Gender_clf_model.h5')
-model_2 = keras.models.load_model('Age_rgr_model.h5')
-model_3 = keras.models.load_model('Emotion_model.h5')
+cascade_face_detector = cv2.CascadeClassifier("model\haarcascade_frontalface_default.xml")
+model_1 = keras.models.load_model('model\Gender_model.h5')
+model_2 = keras.models.load_model('model\Age_model.h5')
+model_3 = keras.models.load_model('model\Emotion_model.h5')
 
 # Crop image for more accurate prediction
 def crop_resize(img, face_box , x_max , y_max):
   x, y, w, h = face_box
 
   # Wider the crop 15 px each sides except 25 px for bottom side
-  crop_img = img[(y-25 if y-25>0 else 0):(y+h+15 if y+h+15<y_max else y_max) , 
-            (x-15 if x-15>0 else 0):(x+w+15 if x+w+15<x_max else x_max)]
-  resized_img = cv2.resize(crop_img, (256, 256)) # Resize the picture resolution
-
+  try:
+    crop_img = img[(y-25 if y-25>0 else 0):(y+h+15 if y+h+15<y_max else y_max) , 
+              (x-15 if x-15>0 else 0):(x+w+15 if x+w+15<x_max else x_max)]
+    resized_img = cv2.resize(crop_img, (256, 256)) # Resize the picture resolution
+  except:
+    crop_img = img[y:y+h,x:x+w]
+    resized_img = cv2.resize(crop_img, (256, 256)) 
   return resized_img
 
 # Preprocess image
@@ -29,7 +32,7 @@ def preprocess(img, out=True):
   faces = cascade_face_detector.detectMultiScale(gray)
 
   # Check detected face
-  if not faces: raise IndexError
+  if len(faces) == 0 : raise IndexError
   if out: print(faces) 
 
   # Cropped detected face
@@ -54,8 +57,11 @@ def predict_img(model_1,model_2,model_3, img):
     predicted_gender = ("Male" if np.argmax(classes) else "Female")
     [[age]] = model_2.predict(images, batch_size=10)
     emotion = model_3.predict(images, batch_size=10)
-  
-    return predicted_gender, round(classes[0][0]*100,2) , round(age) , emoji[np.argmax(emotion)+1], box
+    
+    if predicted_gender=='Male':
+        return predicted_gender, round(100-classes[0][0]*100,2) , round(age) , emoji[np.argmax(emotion)+1], box
+    else:
+        return predicted_gender, round(classes[0][0]*100,2) , round(age) , emoji[np.argmax(emotion)+1], box
 
 # Set filler text
 def set_text(img, name, gender, conf, age, emotion, box):
@@ -87,11 +93,16 @@ def main(name='Your Name'):
     pTime = 0
     cTime = 0
     cap = cv2.VideoCapture(0)
-    # cap.set(3, 1280)
-    # cap.set(4, 720)
 
+    cnt=0
     while True:
         _, img = cap.read()     
+        img = cv2.flip(img, 1)
+
+        if cnt%5:
+            cv2.imshow("Image", img)
+            cnt+=1
+            continue
 
         # Check detected face
         try:
@@ -110,6 +121,8 @@ def main(name='Your Name'):
 
         cv2.imshow("Image", img)
         if cv2.waitKey(20) & 0xFF == ord('q'): break
+        cnt+=1
+        print(cnt)
 
     cap.release()
     cv2.destroyAllWindows()
