@@ -31,11 +31,11 @@ This folder includes training data, trained models and colab notebook from prepr
 
 ## Deploy demo
 1. Download prequisities, procedure is in **Dependencies** section
-2. Run main.py in IDE (for alternative you can run in clouds with colab notebooks that is listed on **Addition file** section, make sure to read the README.txt first)
+2. Run main.py in IDE (for alternative you can run in cloud with colab notebook that is listed on **Deploy demo (alternative choice)** section)
 3. After the webcam has turned on. On the left upper side, it shows the fps speed of your webcam
 4. It will detected your face and predicted your gender, age, and facial expression. There are also some addition dummy features.
 
-## Deploy demo alternative choice
+## Deploy demo (alternative choice)
 1. For alternatives, you can execute it on a cloud (google colab) [here](https://colab.research.google.com/drive/1f2uR-2CwUJFSdJrL5ihBLkJXE2Ji-TKq?authuser=1#scrollTo=O4Febami5Ir7)
 2. Execute ***Preparation*** section
 3. Choose where to execute demo (Webcam image/video)
