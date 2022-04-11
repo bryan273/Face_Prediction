@@ -25,19 +25,20 @@ Install the required packages by executing the following command.
 
 
 ### Addition file:
-Available at : this [link](https://drive.google.com/drive/folders/1EDQ3PBI6aZ_QVRr0Lj4OYk1c5kRJbkqj?usp=sharing)
+Available at : this drive [link](https://drive.google.com/drive/folders/1EDQ3PBI6aZ_QVRr0Lj4OYk1c5kRJbkqj?usp=sharing)
 
 This folder includes training data, trained models and colab notebook from preprocessed data until deploy models from scratch
 
 ## Deploy demo
 1. Download prequisities, procedure is in **Dependencies** section
-2. Run main.py in IDE (for alternative you can run in clouds with colab notebooks that is listed on **Addition file** section, make sure to read the Readme.txt first)
+2. Run main.py in IDE (for alternative you can run in clouds with colab notebooks that is listed on **Addition file** section, make sure to read the README.txt first)
 3. After the webcam has turned on. On the left upper side, it shows the fps speed of your webcam
 4. It will detected your face and predicted your gender, age, and facial expression. There are also some addition dummy features.
 
 ## Sample output:
+![image](https://user-images.githubusercontent.com/88226713/162660991-f051d5fe-1f75-48c4-b5fd-c51cf7beaf40.png)
+
 
 ## Notes:
 1. If tensorflow package cannot be downloaded, try to enable long paths. Open the procedures in this [link](https://superuser.com/questions/1119883/windows-10-enable-ntfs-long-paths-policy-option-missing). In case of long path doesn't exist, try to enable it with this [link](https://www.thewindowsclub.com/how-to-enable-or-disable-win32-long-paths-in-windows-11-10)
 2. On main.py, if the webcam doesnt work, try changing `cap = cv2.VideoCapture(0)` on line 89 with different numbers like -1 or 1 or 2 instead of 0. And make sure to allow webcam permissions on the IDE you used.
-
