@@ -5,7 +5,7 @@ import cv2
 import time
 import random
 
-# Crop Face
+# Load model
 cascade_face_detector = cv2.CascadeClassifier("model\haarcascade_frontalface_default.xml")
 model_1 = keras.models.load_model('model\Gender_model.h5')
 model_2 = keras.models.load_model('model\Age_model.h5')
@@ -58,10 +58,10 @@ def predict_img(model_1,model_2,model_3, img):
     [[age]] = model_2.predict(images, batch_size=10)
     emotion = model_3.predict(images, batch_size=10)
     
-    if predicted_gender=='Male':
-        return predicted_gender, round(100-classes[0][0]*100,2) , round(age) , emoji[np.argmax(emotion)+1], box
+    if predicted_gender == 'Male':
+      return 'Male', round(classes[0][1]*100,2) , round(age) , emoji[np.argmax(emotion)+1], box
     else:
-        return predicted_gender, round(classes[0][0]*100,2) , round(age) , emoji[np.argmax(emotion)+1], box
+      return 'Female', round(classes[0][0]*100,2) , round(age) , emoji[np.argmax(emotion)+1], box
 
 # Set filler text
 def set_text(img, name, gender, conf, age, emotion, box):
@@ -99,6 +99,7 @@ def main(name='Your Name'):
         _, img = cap.read()     
         img = cv2.flip(img, 1)
 
+        # Re-update every 5 iteration
         if cnt%5:
             cv2.imshow("Image", img)
             cnt+=1
