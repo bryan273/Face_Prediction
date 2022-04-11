@@ -24,7 +24,7 @@ Install the required packages by executing the following command.
   * haarcascade_frontalface_default.xml : detect face bounds
 
 
-### Addition file:
+### Addition training file:
 Available at : this drive [link](https://drive.google.com/drive/folders/1EDQ3PBI6aZ_QVRr0Lj4OYk1c5kRJbkqj?usp=sharing)
 
 This folder includes training data, trained models and colab notebook from preprocessed data until deploy models from scratch
@@ -35,10 +35,18 @@ This folder includes training data, trained models and colab notebook from prepr
 3. After the webcam has turned on. On the left upper side, it shows the fps speed of your webcam
 4. It will detected your face and predicted your gender, age, and facial expression. There are also some addition dummy features.
 
+## Deploy demo alternative choice
+1. For alternatives, you can execute it on a cloud (google colab) [here](https://colab.research.google.com/drive/1f2uR-2CwUJFSdJrL5ihBLkJXE2Ji-TKq?authuser=1#scrollTo=O4Febami5Ir7)
+2. Execute ***Preparation*** section
+3. Choose where to execute demo (Webcam image/video)
+4. Input your name and execute it
+5. The webcam should turn on by time
+
 ## Sample output:
 ![image](https://user-images.githubusercontent.com/88226713/162660991-f051d5fe-1f75-48c4-b5fd-c51cf7beaf40.png)
 
 
-## Notes:
-1. If tensorflow package cannot be downloaded, try to enable long paths. Open the procedures in this [link](https://superuser.com/questions/1119883/windows-10-enable-ntfs-long-paths-policy-option-missing). In case of long path doesn't exist, try to enable it with this [link](https://www.thewindowsclub.com/how-to-enable-or-disable-win32-long-paths-in-windows-11-10)
-2. On main.py, if the webcam doesnt work, try changing `cap = cv2.VideoCapture(0)` on line 89 with different numbers like -1 or 1 or 2 instead of 0. And make sure to allow webcam permissions on the IDE you used.
+## Notes when running on local:
+1. If modules cannot be imported after downloaded, try click Ctrl+Shift+P -> Select python interpreter -> Change to recommended , and restart the IDE
+2. If tensorflow package cannot be downloaded, try to enable long paths. Open the procedures in this [link](https://superuser.com/questions/1119883/windows-10-enable-ntfs-long-paths-policy-option-missing). In case of long path doesn't exist, try to enable it with this [link](https://www.thewindowsclub.com/how-to-enable-or-disable-win32-long-paths-in-windows-11-10)
+3. On main.py, if the webcam doesnt work, try changing `cap = cv2.VideoCapture(0)` on line 89 with different numbers like -1 or 1 or 2 instead of 0. And make sure to allow webcam permissions on the IDE you used.
