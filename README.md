@@ -1,5 +1,5 @@
 # Real Time Face Prediction
-Performs real-time face based image prediction on gender, age, and facial expression.
+Performs real-time face based image prediction on gender, age, and facial expression with Neural Networks.
 
 ## Description
 Gender, age, and facial expression prediction are the key areas of various real world applications, such as face recognition applications, discovery about a specific person, and indication on an individual's intentions within a situation. This project used Deep Convolutional Neural Network such as ResNet50 and modified VGG-16 models for training.
