@@ -36,7 +36,7 @@ This folder includes training data, trained models, and colab notebook from prep
 4. It will detect your face and predict your gender, age, and facial expression. There are also some additional dummy features.
 
 ## Deploy demo (alternative choice)
-1. For alternatives, you can execute it on a cloud (google colab) [here](https://colab.research.google.com/drive/1f2uR-2CwUJFSdJrL5ihBLkJXE2Ji-TKq?authuser=1#scrollTo=O4Febami5Ir7)
+1. For alternatives, you can execute it on a cloud (google colab) [here](https://colab.research.google.com/drive/1f2uR-2CwUJFSdJrL5ihBLkJXE2Ji-TKq?usp=sharing)
 2. Execute ***Preparation*** section
 3. Choose which type to execute the demo (Webcam image/video)
 4. Input your name and execute it
